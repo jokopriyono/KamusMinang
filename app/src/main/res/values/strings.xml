@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Kamus Minang</string>
+    
+    <string-array name="pilihBahasa">
+        <item> Bahasa Indonesia</item>
+        <item> Bahasa Minang</item>
+        <item> Bahasa Inggris</item>
+    </string-array>
+</resources>
