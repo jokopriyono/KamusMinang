@@ -54,10 +54,6 @@ public class CustomAdapter extends BaseAdapter{
         txt_dua.setText(mData.get(position).getB_minang());
         txt_tiga.setText(mData.get(position).getB_ingg());
 
-        v.setTag(mData.get(position).get)
-
-
-
         return null;
     }
 }
