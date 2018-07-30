@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.kamus.friswells.kamusminang.MainActivity">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pilih Bahasa :"
+        android:text="@string/pilih_bahasa"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"/>
@@ -30,17 +27,18 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
         <EditText
-            android:id="@+id/Ed_search"
+            android:id="@+id/edt_search"
+            android:hint="@string/ketik_disini"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="text" />
         <Button
-            android:id="@+id/Btn_search"
+            android:id="@+id/btn_cari"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:text="Cari"/>
+            android:text="@string/cari"/>
     </LinearLayout>
     <ListView
         android:id="@+id/listKata"
