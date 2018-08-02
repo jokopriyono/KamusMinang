@@ -3,6 +3,7 @@
     <string name="pilih_bahasa">Pilih Bahasa :</string>
     <string name="ketik_disini">Ketik disini</string>
     <string name="cari">Cari</string>
+    <string name="minus">-</string>
 
     <string-array name="pilihBahasa">
         <item> Bahasa Indonesia</item>
