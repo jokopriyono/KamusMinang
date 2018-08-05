@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.kamus.friswells.kamusminang.adapter.ListKataAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,5 +144,36 @@ public class KamusDB {
         }
         cursor.close();
         return list;
+    }
+
+    public String cariBahasa(int id, int bahasa) {
+        Cursor cursor = database.rawQuery("SELECT * FROM kamus WHERE id='"+id+"'", null);
+        if (cursor.getCount()>0){
+            cursor.moveToFirst();
+            String cari = null;
+            if (bahasa == ListKataAdapter.B_INDO) {
+                cari = cursor.getString(1);
+            } else if (bahasa == ListKataAdapter.B_MINANG) {
+                cari = cursor.getString(2);
+            } else if (bahasa == ListKataAdapter.B_INGGRIS)
+                cari = cursor.getString(3);
+            cursor.close();
+            return cari;
+        }
+        Log.d("pesan", "gak ketemu "+id);
+        cursor.close();
+        return null;
+    }
+
+    public String cariJenisBahasa(int id) {
+        Cursor cursor = database.rawQuery("SELECT * FROM kamus WHERE id='"+id+"'", null);
+        cursor.moveToFirst();
+        if (cursor.getCount()>0){
+            String cari = cursor.getString(4);
+            cursor.close();
+            return cari;
+        }
+        cursor.close();
+        return null;
     }
 }

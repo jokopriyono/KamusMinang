@@ -26,12 +26,14 @@
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
+
         <EditText
             android:id="@+id/edt_search"
-            android:hint="@string/ketik_disini"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="@string/ketik_disini"
+            android:imeOptions="actionDone"
             android:inputType="text" />
         <Button
             android:id="@+id/btn_cari"

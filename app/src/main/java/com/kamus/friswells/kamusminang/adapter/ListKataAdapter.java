@@ -1,32 +1,34 @@
-package com.kamus.friswells.kamusminang;
+package com.kamus.friswells.kamusminang.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import com.kamus.friswells.kamusminang.R;
+import com.kamus.friswells.kamusminang.database.KamusDB;
 
-/**
- * Created by friswell on 30/05/2018.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ListKataAdapter extends RecyclerView.Adapter<ListKataAdapter.ViewHolder>{
 
-    private Context mContext;
-    private List<String> data;
-    private int bahasa = 1;
+    private HashMap<Integer, String> data;
+    private List<Integer> urutan;
     public final static int B_INDO = 1;
     public final static int B_MINANG = 2;
     public final static int B_INGGRIS = 3;
+    private final KamusDB database;
 
-    public ListKataAdapter(Context mContext, List<String> dataKamus, int jenisKata) {
-        this.mContext = mContext;
+    public ListKataAdapter(Context mContext, HashMap<Integer, String> dataKamus) {
         data = dataKamus;
-        bahasa = jenisKata;
+        urutan = new ArrayList<>();
+        urutan.addAll(data.keySet());
+        database = KamusDB.getInstance(mContext);
+        database.open();
     }
 
     @Override
@@ -39,24 +41,15 @@ public class ListKataAdapter extends RecyclerView.Adapter<ListKataAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ListKataAdapter.ViewHolder holder, int position) {
-        holder.txtJenisKata.setText("-");
-        switch (bahasa){
-            case B_INDO:
-                holder.txtMinang.setText("-");
-                holder.txtInggris.setText("-");
-                holder.txtIndo.setText(data.get(position));
-                break;
-            case B_MINANG:
-                holder.txtIndo.setText("-");
-                holder.txtInggris.setText("-");
-                holder.txtMinang.setText(data.get(position));
-                break;
-            case B_INGGRIS:
-                holder.txtIndo.setText("-");
-                holder.txtMinang.setText("-");
-                holder.txtInggris.setText(data.get(position));
-                break;
-        }
+        String bIndo = database.cariBahasa(urutan.get(position), B_INDO);
+        String bMinang = database.cariBahasa(urutan.get(position), B_MINANG);
+        String bInggris = database.cariBahasa(urutan.get(position), B_INGGRIS);
+        String jenisBahasa = database.cariJenisBahasa(urutan.get(position));
+
+        holder.txtJenisKata.setText(jenisBahasa);
+        holder.txtIndo.setText(bIndo);
+        holder.txtMinang.setText(bMinang);
+        holder.txtInggris.setText(bInggris);
     }
 
     @Override
